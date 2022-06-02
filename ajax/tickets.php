@@ -70,6 +70,7 @@
                         <th class="column-title">Proyecto </th>
                         <th class="column-title">Prioridad </th>
                         <th class="column-title">Estado </th>
+                        <th class="column-title">Creado Por </th>
                         <th>Fecha</th>
                         <th class="column-title no-link last"><span class="nobr"></span></th>
                     </tr>
@@ -84,6 +85,7 @@
                             $project_id=$r['project_id'];
                             $priority_id=$r['priority_id'];
                             $status_id=$r['status_id'];
+                            $user_id=$r['user_id'];
                             $kind_id=$r['kind_id'];
                             $category_id=$r['category_id'];
 
@@ -102,6 +104,11 @@
                                 $name_status=$c['name'];
                             }
 
+                            $sql = mysqli_query($con, "select * from user where id=$user_id");
+                            if($c=mysqli_fetch_array($sql)) {
+                                $user_user=$c['name'];
+                            }
+
 
                 ?>
                     <input type="hidden" value="<?php echo $id;?>" id="id<?php echo $id;?>">
@@ -114,6 +121,7 @@
                     <input type="hidden" value="<?php echo $category_id;?>" id="category_id<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $priority_id;?>" id="priority_id<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $status_id;?>" id="status_id<?php echo $id;?>">
+                    <input type="hidden" value="<?php echo $user_id;?>" id="user_id<?php echo $id;?>">
 
 
                     <tr class="even pointer">
@@ -121,6 +129,7 @@
                         <td><?php echo $name_project; ?></td>
                         <td><?php echo $name_priority; ?></td>
                         <td><?php echo $name_status;?></td>
+                        <td><?php echo $name_user;?></td>
                         <td><?php echo $created_at;?></td>
                         <td ><span class="pull-right">
                         <a href="#" class='btn btn-default' title='Editar producto' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-udp"><i class="glyphicon glyphicon-edit"></i></a> 
