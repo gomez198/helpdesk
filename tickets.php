@@ -110,6 +110,7 @@ $( "#upd" ).submit(function( event ) {
         var category_id = $("#category_id"+id).val();
         var priority_id = $("#priority_id"+id).val();
         var user_id = $("#user_id"+id).val();
+        var assigned_id = $("#assigned_id"+id).val();
             $("#mod_id").val(id);
             $("#mod_title").val(title);
             $("#mod_description").val(description);
@@ -118,6 +119,7 @@ $( "#upd" ).submit(function( event ) {
             $("#mod_category_id").val(category_id);
             $("#mod_priority_id").val(priority_id);
             $("#mod_user_id").val(user_id);
+            $("#assigned_id").val(assigned_id);
         }
 
 </script>

@@ -69,8 +69,9 @@
                         <th class="column-title">Asunto </th>
                         <th class="column-title">Proyecto </th>
                         <th class="column-title">Prioridad </th>
-                        <th class="column-title">Usuario </th>
                         <th class="column-title">Estado </th>
+                        <th class="column-title">Creador </th>
+                        <th class="column-title">Solicitante </th>
                         <th>Fecha</th>
                         <th class="column-title no-link last"><span class="nobr"></span></th>
                     </tr>
@@ -84,8 +85,9 @@
                             $title=$r['title'];
                             $project_id=$r['project_id'];
                             $priority_id=$r['priority_id'];
-                            $user_id=$r['user_id'];
                             $status_id=$r['status_id'];
+                            $user_id=$r['user_id'];
+                            $assigned_id=$r['assigned_id'];
                             $kind_id=$r['kind_id'];
                             $category_id=$r['category_id'];
 
@@ -99,14 +101,19 @@
                                 $name_priority=$c['name'];
                             }
 
+                            $sql = mysqli_query($con, "select * from status where id=$status_id");
+                            if($c=mysqli_fetch_array($sql)) {
+                                $name_status=$c['name'];
+                            }
+
                             $sql = mysqli_query($con, "select * from user where id=$user_id");
                             if($c=mysqli_fetch_array($sql)) {
                                 $name_user=$c['name'];
                             }
 
-                            $sql = mysqli_query($con, "select * from status where id=$status_id");
+                            $sql = mysqli_query($con, "select * from user where id=$assigned_id");
                             if($c=mysqli_fetch_array($sql)) {
-                                $name_status=$c['name'];
+                                $name_assigned=$c['name'];
                             }
 
 
@@ -121,16 +128,18 @@
                     <input type="hidden" value="<?php echo $project_id;?>" id="project_id<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $category_id;?>" id="category_id<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $priority_id;?>" id="priority_id<?php echo $id;?>">
-                    <input type="hidden" value="<?php echo $user_id;?>" id="user_id<?php echo $id;?>">
                     <input type="hidden" value="<?php echo $status_id;?>" id="status_id<?php echo $id;?>">
+                    <input type="hidden" value="<?php echo $user_id;?>" id="user_id<?php echo $id;?>">
+                    <input type="hidden" value="<?php echo $assigned_id;?>" id="assigned_id<?php echo $id;?>">
 
 
                     <tr class="even pointer">
                         <td><?php echo $title;?></td>
                         <td><?php echo $name_project; ?></td>
                         <td><?php echo $name_priority; ?></td>
-                        <td><?php echo $name_user; ?></td>
                         <td><?php echo $name_status;?></td>
+                        <td><?php echo $name_user; ?></td>
+                        <td><?php echo $name_assigned; ?></td>
                         <td><?php echo $created_at;?></td>
                         <td ><span class="pull-right">
                         <a href="#" class='btn btn-default' title='Editar producto' onclick="obtener_datos('<?php echo $id;?>');" data-toggle="modal" data-target=".bs-example-modal-lg-udp"><i class="glyphicon glyphicon-edit"></i></a> 

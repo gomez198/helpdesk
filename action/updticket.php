@@ -20,7 +20,6 @@
 		$category_id = $_POST["category_id"];
 		$project_id = $_POST["project_id"];
 		$priority_id = $_POST["priority_id"];
-		
 		$status_id = $_POST["status_id"];
 		$kind_id = $_POST["kind_id"];
 		$id=$_POST['mod_id'];

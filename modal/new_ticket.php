@@ -5,6 +5,7 @@
     $kinds =mysqli_query($con, "select * from kind");
     $categories =mysqli_query($con, "select * from category");
     $users =mysqli_query($con, "select * from user");
+    $assigned =mysqli_query($con, "select * from user");
 ?>
 
     <div> <!-- Modal -->
@@ -77,6 +78,18 @@
                                 <select class="form-control" name="priority_id" >
                                     <option selected="" value="">-- Selecciona --</option>
                                   <?php foreach($priorities as $p):?>
+                                    <option value="<?php echo $p['id']; ?>"><?php echo $p['name']; ?></option>
+                                  <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Solicitante
+                            </label>
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <select class="form-control" name="assigned_id" >
+                                    <option selected="" value="">-- Selecciona --</option>
+                                  <?php foreach($assigned as $p):?>
                                     <option value="<?php echo $p['id']; ?>"><?php echo $p['name']; ?></option>
                                   <?php endforeach; ?>
                                 </select>
